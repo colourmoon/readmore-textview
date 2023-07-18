@@ -16,7 +16,7 @@ allprojects {
 
  gradel
 dependencies {
-	          implementation 'com.github.colourmoon:readmore-textview:VersionName' // here VersionName = v1.0.1
+	          implementation 'com.github.colourmoon:readmore-textview:VersionName' // here VersionName = v1.0.2
 	}
   
   > Step 3 Implement the Readmore image view in your Layout xml file like this
