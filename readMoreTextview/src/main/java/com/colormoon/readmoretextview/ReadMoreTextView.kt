@@ -161,19 +161,19 @@ class ReadMoreTextView @JvmOverloads constructor(context: Context, attrs: Attrib
         }
     }
 
-    fun setShowTextColor(moreTextColor: Int) {
+    fun setExpandedTextColor(moreTextColor: Int) {
         this.moreTextColor = moreTextColor
     }
 
-    fun setLessTextColor(lessTextColor: Int) {
+    fun setCollapsedTextColor(lessTextColor: Int) {
         this.lessTextColor = lessTextColor
     }
 
-    fun setTrimCollapsedText(trimCollapsedText: CharSequence) {
+    fun setCollapsedText(trimCollapsedText: CharSequence) {
         this.trimCollapsedText = trimCollapsedText
     }
 
-    fun setTrimExpandedText(trimExpandedText: CharSequence) {
+    fun setExpandedText(trimExpandedText: CharSequence) {
         this.trimExpandedText = trimExpandedText
     }
 
