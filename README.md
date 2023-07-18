@@ -5,9 +5,9 @@ this is the library for the readmore textview.
 
 ```gradel
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 		}
 	}
   ```
@@ -15,7 +15,7 @@ allprojects {
 
  ```gradel
 dependencies {
-	          implementation 'com.github.colourmoon:readmore-textview:VersionName' // here VersionName = v1.0.2
+         implementation 'com.github.colourmoon:readmore-textview:VersionName' // here VersionName = v1.0.2
 	}
   ```
   
@@ -40,9 +40,9 @@ dependencies {
         readMoreTextView.setCollapsedText("Show More")
         readMoreTextView.setExpandedText("Show Less")
         readMoreTextView.setCollapsedTextColor(R.color.black)
+        readMoreTextView.setTrimLines(4) //By Default its 2
         readMoreTextView.setExpandedTextColor(R.color.blue)
       
         }
-        
  }
 ```
