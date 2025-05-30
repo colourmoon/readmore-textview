@@ -1,5 +1,9 @@
 package com.colormoon.readmoretextview
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.text.SpannableStringBuilder
@@ -32,6 +36,7 @@ class ReadMoreTextView @JvmOverloads constructor(context: Context, attrs: Attrib
     private var trimMode: Int
     private var lineEndIndex = 0
     private var trimLines: Int
+    private var isAnimating = false
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ReadMoreTextView)
@@ -77,6 +82,7 @@ class ReadMoreTextView @JvmOverloads constructor(context: Context, attrs: Attrib
         setText()
     }
 
+
     private fun getTrimmedText(text: CharSequence?): CharSequence? {
         if (trimMode == TRIM_MODE_LENGTH) {
             if (text != null && text.length > trimLength) {
@@ -92,7 +98,6 @@ class ReadMoreTextView @JvmOverloads constructor(context: Context, attrs: Attrib
                 if (readMore) {
                     if (layout.lineCount > trimLines) {
                         lessTextColor?.let {
-                            Log.e("getTrimmedText", ": $it   ${R.color.show_less}")
                             setColorClickableText(it)
                         }
                         return updateCollapsedText()
@@ -109,21 +114,25 @@ class ReadMoreTextView @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     private fun updateCollapsedText(): CharSequence {
-        var trimEndIndex = text!!.length
-        when (trimMode) {
-            TRIM_MODE_LINES -> {
-                trimEndIndex = lineEndIndex - (ELLIPSIZE.length + trimCollapsedText.length + 1)
-                if (trimEndIndex < 0) {
-                    trimEndIndex = trimLength + 1
+        if (text != null) {
+            var trimEndIndex = text!!.length
+            when (trimMode) {
+                TRIM_MODE_LINES -> {
+                    trimEndIndex = lineEndIndex - (ELLIPSIZE.length + trimCollapsedText.length + 1)
+                    if (trimEndIndex < 0) {
+                        trimEndIndex = trimLength + 1
+                    }
                 }
+                TRIM_MODE_LENGTH -> trimEndIndex = trimLength + 1
             }
-
-            TRIM_MODE_LENGTH -> trimEndIndex = trimLength + 1
+            val s = SpannableStringBuilder(text, 0, trimEndIndex)
+                .append(ELLIPSIZE)
+                .append(trimCollapsedText)
+            Log.d("TAG", "updateCollapsedText: $s")
+            return addClickableSpan(s, trimCollapsedText)
+        } else {
+            return ""
         }
-        val s = SpannableStringBuilder(text, 0, trimEndIndex)
-            .append(ELLIPSIZE)
-            .append(trimCollapsedText)
-        return addClickableSpan(s, trimCollapsedText)
     }
 
     private fun updateExpandedText(): CharSequence? {
@@ -133,6 +142,7 @@ class ReadMoreTextView @JvmOverloads constructor(context: Context, attrs: Attrib
                 0,
                 text!!.length
             ).append(context.getString(R.string.space)).append(trimExpandedText)
+            Log.d("TAG", "updateExpandedText: $s, \n\n$text ${text!!.length}")
             return addClickableSpan(s, trimExpandedText)
         }
         return text

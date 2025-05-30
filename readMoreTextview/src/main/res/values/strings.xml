@@ -2,4 +2,4 @@
 <resources>
     <string name="read_more">show more</string>
     <string name="read_less">show less</string>
-    <string name="space">"  "</string></resources>
+    <string name="space">" "</string></resources>

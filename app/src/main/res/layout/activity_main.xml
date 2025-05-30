@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp"
     tools:context="com.colormoon.MainActivity">
 
-    <TextView
+    <com.colormoon.readmoretextview.ReadMoreTextView
         android:layout_width="match_parent"
-        android:id="@+id/readmoreTv"
-        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/long_text" />
+        android:text="@string/long_text"
+        android:textColor="@color/black" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

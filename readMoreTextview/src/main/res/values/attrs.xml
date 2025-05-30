@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--    Read More TextView-->
     <declare-styleable name="ReadMoreTextView">
         <attr name="trimExpandedText" format="string" />
         <attr name="trimCollapsedText" format="string" />
@@ -9,8 +8,8 @@
         <attr name="colorClickableText" format="color" />
         <attr name="trimLines" format="integer" />
         <attr name="trimMode">
-            <enum name="trimModeLine" value="0"/>
-            <enum name="trimModeLength" value="1"/>
+            <enum name="trimModeLine" value="0" />
+            <enum name="trimModeLength" value="1" />
         </attr>
     </declare-styleable>
-    <!--    Read More TextView--></resources>
+</resources>
